@@ -1,0 +1,113 @@
+version: "3.8"
+ 
+networks:
+  netSEN300Main:
+    external: false
+ 
+services:
+  FinalSEN300ProductsServiceDBMongo:
+    container_name: FinalSEN300ProductsServiceDBMongo
+    image: mongo:latest
+    restart: always
+    hostname: FinalSEN300ProductsServiceDBMongo
+    ports:
+      - "27017:27017"
+    networks:
+      - netSEN300Main
+ 
+  FinalSEN300BasketServiceDBRedis:
+    container_name: FinalSEN300BasketServiceDBRedis
+    image: redis:latest
+    restart: always
+    hostname: FinalSEN300BasketServiceDBRedis
+    ports:
+      - "6379:6379"
+    networks:
+      - netSEN300Main
+ 
+  FinalSEN300OrdersServiceDBSQLServer:
+    container_name: FinalSEN300OrdersServiceDBSQLServer
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: always
+    hostname: FinalSEN300OrdersServiceDBSQLServer
+    ports:
+      - "1433:1433"
+    networks:
+      - netSEN300Main
+    environment:
+      SA_PASSWORD: "abc123!!@"
+      ACCEPT_EULA: "Y"
+ 
+  FinalSEN300EurekaRegistry:
+    container_name: FinalSEN300EurekaRegistry
+    image: steeltoeoss/eureka-server:latest
+    restart: always
+    hostname: FinalSEN300EurekaRegistry
+    ports:
+      - 8761:8761
+    networks:
+      - netSEN300Main
+ 
+  FinalSEN300APIGatewayOcelot:
+    container_name: FinalSEN300APIGatewayOcelot
+    build:
+      context: ./dotnet-apigateway-ocelot
+      dockerfile: Dockerfile
+    image: finalsen300ocelotgatewayapi:1
+    restart: always
+    hostname: FinalSEN300APIGatewayOcelot
+    ports:
+      - 5041:80
+    networks:
+      - netSEN300Main
+ 
+  FinalSEN300ProductsServiceAPI:
+    container_name: FinalSEN300ProductsServiceAPI
+    build:
+      context: ./FinalProductService
+      dockerfile: Dockerfile
+    image: finalsen300productserviceapi:1
+    restart: always
+    hostname: FinalSEN300ProductsServiceAPI
+    ports:
+      - "8081:8080"
+    networks:
+      - netSEN300Main
+    depends_on:
+      - FinalSEN300ProductsServiceDBMongo
+      - FinalSEN300EurekaRegistry
+      - FinalSEN300APIGatewayOcelot
+ 
+  FinalSEN300BasketServiceAPI:
+    container_name: FinalSEN300BasketServiceAPI
+    build:
+      context: ./finalbasketService
+      dockerfile: Dockerfile
+    image: finalsen300basketserviceapi:1
+    restart: always
+    hostname: FinalSEN300BasketServiceAPI
+    ports:
+      - "8082:8080"
+    networks:
+      - netSEN300Main
+    depends_on:
+      - FinalSEN300BasketServiceDBRedis
+      - FinalSEN300EurekaRegistry
+      - FinalSEN300APIGatewayOcelot
+ 
+  FinalSEN300OrdersServiceAPI:
+    container_name: FinalSEN300OrdersServiceAPI
+    build:
+      context: ./FinalOrderService
+      dockerfile: Dockerfile
+    image: finalsen300ordersserviceapi:1
+    restart: always
+    hostname: FinalSEN300OrdersServiceAPI
+    ports:
+      - "8083:80"
+    networks:
+      - netSEN300Main
+    depends_on:
+      - FinalSEN300OrdersServiceDBSQLServer
+      - FinalSEN300EurekaRegistry
+      - FinalSEN300APIGatewayOcelot
