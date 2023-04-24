@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+
     @Autowired
     private ProductRepository productRepository;
+
     public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -17,9 +19,9 @@ public class ProductController {
     //Create a product(s)
         //single product
     @PostMapping(path="")
+
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createProduct(@RequestBody Product product){
-        product.setProductUuid(UUID.randomUUID().toString()); // Convert UUID to string
         productRepository.save(product);
     }
 
@@ -28,7 +30,6 @@ public class ProductController {
     @ResponseStatus(code = HttpStatus.OK)
     public void createMultiplePeoducts(@RequestBody List<Product> products){
         for(Product product : products){
-            product.setProductUuid(UUID.randomUUID().toString());
             productRepository.save(product);
         }
     }
@@ -81,7 +82,7 @@ public class ProductController {
 	public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product) {
         
 
-		if (!product.getProductUuid().equals(productUUID.toString())) {
+		if (!product.getProductUUID().equals(productUUID)) {
 			throw new RuntimeException("the two values did not match");
 		}
 
@@ -110,7 +111,7 @@ public class ProductController {
 
     @DeleteMapping(path ="/{id}")
     public void deleteProduct(@PathVariable UUID id) {
-        productRepository.deleteByProductUuid(id);
+        productRepository.deleteById(id);
     }
     
     
