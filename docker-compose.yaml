@@ -1,9 +1,4 @@
 version: "3.8"
- 
-networks:
-  netSEN300Main:
-    external: false
- 
 services:
   FinalSEN300ProductsServiceDBMongo:
     container_name: FinalSEN300ProductsServiceDBMongo
@@ -12,6 +7,8 @@ services:
     hostname: FinalSEN300ProductsServiceDBMongo
     ports:
       - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
     networks:
       - netSEN300Main
  
@@ -111,3 +108,12 @@ services:
       - FinalSEN300OrdersServiceDBSQLServer
       - FinalSEN300EurekaRegistry
       - FinalSEN300APIGatewayOcelot
+
+volumes:
+  mongodb_data_container:
+
+ 
+networks:
+  netSEN300Main:
+    external: false
+ 
