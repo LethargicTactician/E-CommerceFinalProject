@@ -68,26 +68,26 @@ public class ProductController {
     }
 
     //update product(s)
-    // @PutMapping(path = "/{productUUID}")
-    // @ResponseStatus(HttpStatus.NO_CONTENT)
-    // public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product){
-    //     if(!product.getProductUuid().equals(productUUID)){
-    //         throw new RuntimeException("the two values did not match");
-    //     }
-    // }
+    @PutMapping(path = "/{productUUID}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product){
+        if(!product.getProductUUID().equals(productUUID)){
+            throw new RuntimeException("the two values did not match");
+        }
+    }
 
     
-    @PutMapping(path = "/{productUUID}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product) {
+    // @PutMapping(path = "/{productUUID}")
+	// @ResponseStatus(HttpStatus.OK)
+	// public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product) {
         
 
-		if (!product.getProductUUID().equals(productUUID)) {
-			throw new RuntimeException("the two values did not match");
-		}
+	// 	if (!product.getProductUUID().equals(productUUID)) {
+	// 		throw new RuntimeException("the two values did not match");
+	// 	}
 
-		productRepository.save(product);
-	}
+	// 	productRepository.save(product);
+	// }
     
 
     // @PutMapping(path = "/{productUUID}")
