@@ -19,7 +19,6 @@ public class ProductController {
     //Create a product(s)
         //single product
     @PostMapping(path="")
-
     @ResponseStatus(code = HttpStatus.CREATED)
     public void createProduct(@RequestBody Product product){
         productRepository.save(product);
@@ -71,9 +70,12 @@ public class ProductController {
     @PutMapping(path = "/{productUUID}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product){
-        if(!product.getProductUUID().equals(productUUID)){
+        if (!product.getProductUUID().equals(productUUID)) {
             throw new RuntimeException("the two values did not match");
         }
+
+        productRepository.save(product);
+    
     }
 
     
