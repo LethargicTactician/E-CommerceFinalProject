@@ -16,6 +16,8 @@ services:
     container_name: FinalSEN300BasketServiceDBRedis
     image: redis:latest
     restart: always
+    volumes: 
+      - redis_cache:/data
     hostname: FinalSEN300BasketServiceDBRedis
     ports:
       - "6379:6379"
@@ -26,6 +28,8 @@ services:
     container_name: FinalSEN300OrdersServiceDBSQLServer
     image: mcr.microsoft.com/mssql/server:2019-latest
     restart: always
+    volumes:
+      - mssqldata:/var/opt/mssql
     hostname: FinalSEN300OrdersServiceDBSQLServer
     ports:
       - "1433:1433"
@@ -119,6 +123,10 @@ services:
 
 volumes:
   mongodb_data_container:
+  mssqldata:
+  redis_cache:
+    driver: local
+
 
  
 networks:
