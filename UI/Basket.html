@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shopping Cart</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		header {
+			background-color: #333;
+			color: white;
+			padding: 20px;
+			text-align: center;
+		}
+
+		nav {
+			background-color: #f2f2f2;
+			display: flex;
+			justify-content: space-around;
+			padding: 10px;
+		}
+
+		nav a {
+			color: #333;
+			text-decoration: none;
+			padding: 10px;
+			font-weight: bold;
+			text-transform: uppercase;
+			transition: color 0.2s;
+		}
+
+		nav a:hover {
+			color: #666;
+		}
+
+		main {
+			padding: 20px;
+		}
+
+		h1 {
+			margin-top: 0;
+			font-size: 48px;
+			line-height: 1.2;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 20px;
+		}
+
+		th {
+			background-color: #f2f2f2;
+			padding: 10px;
+			text-align: left;
+			border: 1px solid #ccc;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		td {
+			padding: 10px;
+			border: 1px solid #ccc;
+			text-align: center;
+		}
+
+		.total {
+			font-size: 24px;
+			font-weight: bold;
+			text-align: right;
+		}
+
+		footer {
+			background-color: #333;
+			color: white;
+			padding: 20px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Shopping Cart</h1>
+	</header>
+	<nav>
+		<a href="#">Home</a>
+		<a href="#">About</a>
+		<a href="#">Contact</a>
+	</nav>
+	<main>
+		<table>
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Product 1</td>
+					<td>$20.00</td>
+					<td><input type="number" value="1"></td>
+					<td>$20.00</td>
+				</tr>
+				<tr>
+					<td>Product 2</td>
+					<td>$15.00</td>
+					<td><input type="number" value="2"></td>
+					<td>$30.00</td>
+				</tr>
+				<tr>
+					<td>Product 3</td>
+					<td>$10.00</td>
+					<td><input type="number" value="3"></td>
+					<td>$30.00</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="total">Total: $80.00</div>
+	</main>
+	<footer>
+		&copy; 2023 My Shopping Cart
+	</footer>
+</body>
+</html>
