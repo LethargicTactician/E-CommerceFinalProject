@@ -2,6 +2,8 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/{everything}",
+      "UseServiceDiscovery": true,
+      "ServiceName": "FINALSEN300BASKETSERVICEAPI",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -27,6 +29,8 @@
         }
       ],
       "UpstreamPathTemplate": "/finalbasketserviceapi/{everything}",
+      "UseServiceDiscovery": true,
+      "ServiceName": "FINALSEN300BASKETSERVICEAPI",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -44,6 +48,8 @@
         }
       ],
       "UpstreamPathTemplate": "/finalordersapi/{everything}",
+      "UseServiceDiscovery": true,
+      "ServiceName": "FINALSEN300ORDERSSERVICEAPI",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -53,6 +59,7 @@
     }
   ],
   "GlobalConfiguration": {
+    "SeriveDiscoveryProveider": {"Type": "Eureka"},
     "BaseUrl": "http://localhost:5041"
   }
 }

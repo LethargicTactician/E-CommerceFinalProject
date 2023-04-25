@@ -3,9 +3,9 @@ docker run --name FinalOrdersServiceDB_SqlServer -e "ACCEPT_EULA=Y" -e "SA_PASSW
 
 for SQL
 
-CREATE DATABASE OrdersServiceDB;
+CREATE DATABASE FinalOrdersServiceDB;
 
-USE OrdersServiceDB;
+USE FinalOrdersServiceDB;
 
 
 CREATE TABLE Products (

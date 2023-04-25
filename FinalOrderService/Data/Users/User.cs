@@ -14,7 +14,7 @@ public class User
     [Required]
     public String Password { get; set; }
 
-     [Required]
+    [Required]
     public DateTime CreatedDate { get; set; }
 
     string toString(){

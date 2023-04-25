@@ -10,5 +10,5 @@ public class DapperContext
         _configuration = configuration;
     }
     
-    public IDbConnection CreateConnection() => new SqlConnection(_configuration.GetConnectionString("conn_FinalOrdersServiceDB_sqlserver"));    
+    public IDbConnection CreateConnection() => new SqlConnection(_configuration.GetConnectionString("FinalSEN300OrdersServiceDBSQLServer"));    
 }
