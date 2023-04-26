@@ -63,21 +63,25 @@ services:
       - netSEN300Main
  
   FinalSEN300ProductsServiceAPI:
-    container_name: FinalSEN300ProductsServiceAPI
+    # container_name: FinalSEN300ProductsServiceAPI
     build:
       context: ./FinalProductService
       dockerfile: Dockerfile
     image: finalsen300productserviceapi:1
     restart: always
-    hostname: FinalSEN300ProductsServiceAPI
+    # hostname: FinalSEN300ProductsServiceAPI
     ports:
-      - "8081:8080"
+      - "8081-8083:8080"
     networks:
       - netSEN300Main
     depends_on:
       - FinalSEN300ProductsServiceDBMongo
       - FinalSEN300EurekaRegistry
       - FinalSEN300APIGatewayOcelot
+    deploy:
+      mode: replicated
+      replicas: 2
+      
  
   FinalSEN300BasketServiceAPI:
     #container_name: FinalSEN300BasketServiceAPI
