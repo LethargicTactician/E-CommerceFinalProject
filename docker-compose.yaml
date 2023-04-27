@@ -30,13 +30,12 @@ services:
     restart: always
     volumes:
       - mssqldata:/var/opt/mssql
-    hostname: FinalSEN300OrdersServiceDBSQLServer
     ports:
       - "1433:1433"
     networks:
       - netSEN300Main
     environment:
-      SA_PASSWORD: "abc123!!@"
+      SA_PASSWORD: abc123!!@
       ACCEPT_EULA: "Y"
  
   FinalSEN300EurekaRegistry:
