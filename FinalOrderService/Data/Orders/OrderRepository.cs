@@ -63,7 +63,7 @@ public class OrderRepository : IOrderRepository
             var parametersProducts = new DynamicParameters();
             parametersProducts.Add("ProductGuid", product.ProductGuid, DbType.Guid);
             parametersProducts.Add("OrderGuid", orderGuid, DbType.Guid);
-            parametersProducts.Add("Title", product.Title, DbType.String);
+            parametersProducts.Add("Name", product.Name, DbType.String);
             parametersProducts.Add("Price", product.Price, DbType.Double);
             parametersProducts.Add("Description", product.Description, DbType.String);
             parametersProducts.Add("PublishedDate", product.PublishedDate, DbType.DateTime);

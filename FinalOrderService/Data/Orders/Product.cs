@@ -9,13 +9,13 @@ public class Product
     public Guid OrderGuid { get; set; }
 
     [Required]
-    public String Title { get; set; }
+    public String ? Name { get; set; }
 
     [Required]
-    public String Description { get; set; }
+    public String ? Description { get; set; }
 
     [Required]
-    public String Price { get; set; }
+    public String  ? Price { get; set; }
 
     [Required]
     public DateTime PublishedDate { get; set; }

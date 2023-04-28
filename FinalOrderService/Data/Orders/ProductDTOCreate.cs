@@ -7,10 +7,10 @@ public class ProductDTOCreate
     public Guid ProductGuid { get; set; }
 
     [Required]
-    public String Title { get; set; }
+    public String ? Name { get; set; }
 
     [Required]
-    public String Description { get; set; }
+    public String ? Description { get; set; }
 
     [Required]
     public double Price { get; set; }
