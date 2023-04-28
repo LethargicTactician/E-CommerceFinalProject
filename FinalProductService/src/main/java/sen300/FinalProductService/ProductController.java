@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "FinalSEN300ProductsServiceAPI")
 public class ProductController {
 
     @Autowired
@@ -32,13 +33,6 @@ public class ProductController {
             productRepository.save(product);
         }
     }
-
-    //get product(s)
-    // @GetMapping(path = "/search/{searchText}")
-    // @ResponseStatus(code = HttpStatus.OK)
-    // public List<Product> searchProducts(@PathVariable(required = true) String searchText){
-    //     return productRepository.findByNameOrDecription(searchText, searchText);
-    // }
 
     // Get a single product by UUID -> doesnt work
     @GetMapping("/products/{id}")
@@ -77,39 +71,6 @@ public class ProductController {
         productRepository.save(product);
     
     }
-
-    
-    // @PutMapping(path = "/{productUUID}")
-	// @ResponseStatus(HttpStatus.OK)
-	// public void updateBook(@PathVariable(required = true) UUID productUUID, @RequestBody Product product) {
-        
-
-	// 	if (!product.getProductUUID().equals(productUUID)) {
-	// 		throw new RuntimeException("the two values did not match");
-	// 	}
-
-	// 	productRepository.save(product);
-	// }
-    
-
-    // @PutMapping(path = "/{productUUID}")
-	// @ResponseStatus(HttpStatus.OK)
-	// public Product updateBook(@RequestBody Product product) {
-    //     return product;    
-	// }
-
-    // @PutMapping(path ="/{productUUID}")
-    // @ResponseStatus(code = HttpStatus.OK)
-    // public void updateProduct(@PathVariable(required = true) UUID productUUID, @RequestBody Product product){
-           
-    //     if(product.getProductUuid() == null || !product.getProductUuid().toString().equals(productUUID.toString())){
-    //         throw new RuntimeException("Product UUID does not match.");
-    //     }  
-    //     productRepository.save(product);
-    //     //System.out.println("HI");
-    // } 
-    
-    // delete product(s)
 
     @DeleteMapping(path ="/{id}")
     public void deleteProduct(@PathVariable UUID id) {
