@@ -25,7 +25,7 @@ public class ProductController {
         productRepository.save(product);
     }
 
-        //multiple products
+    //multiple products
     @PostMapping(path = "/addMiltipleProducts")
     @ResponseStatus(code = HttpStatus.OK)
     public void createMultiplePeoducts(@RequestBody List<Product> products){
@@ -76,7 +76,5 @@ public class ProductController {
     public void deleteProduct(@PathVariable UUID id) {
         productRepository.deleteById(id);
     }
-    
-    
 
 }
